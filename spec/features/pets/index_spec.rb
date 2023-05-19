@@ -102,11 +102,16 @@ RSpec.describe "the pets index" do
 # And I see an indicator that this application is "In Progress"
   describe "US2 has link for new pet application" do
     it "I see a link to 'Start an Application' When I click this link Then I am taken to the new application page where I see a form" do
+      shelter = Shelter.create(name: "Aurora shelter", city: "Aurora, CO", foster_program: false, rank: 9)
+      pet_1 = Pet.create(adoptable: true, age: 1, breed: "sphynx", name: "Lucille Bald", shelter_id: shelter.id)
+      pet_2 = Pet.create(adoptable: true, age: 3, breed: "doberman", name: "Lobster", shelter_id: shelter.id)
+
       visit "/pets"
+      save_and_open_page
 
       expect(page).to have_link("Start New Pet Application")
       click_link("Start New Pet Application")
-      expect(current_path).to eq("/pets/new")
+      expect(current_path).to eq("/applications/new")
     end
   end
 end
