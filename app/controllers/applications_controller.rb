@@ -1,9 +1,20 @@
 class ApplicationsController < ApplicationController
   def show
-    @applications = Application.find(params[:id])
+    @application = Application.find(params[:id])
   end
 
   def new
-    
+   
+  end
+
+  def create
+    application = Application.create!(application_params)
+    redirect_to "/applications/#{application.id}"
+    # require 'pry'; binding.pry
+  end
+
+  private
+  def application_params
+    params.permit(:name, :street_address, :city, :state, :zipcode, :description, :pet_names, :status)
   end
 end
