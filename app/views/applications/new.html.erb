@@ -1,0 +1,26 @@
+<%= form_with method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br>
+
+  <%= form.label :street_address %>
+  <%= form.text_field :street_address %><br>
+
+  <%= form.label :city%>
+  <%= form.text_field :city %><br>
+
+  <%= form.label :state %>
+  <%= form.text_field :state %><br>
+
+  <%= form.label :zipcode %>
+  <%= form.number_field :zipcode, step: 1.0%><br>
+
+  <%= form.label :description %>
+  <%= form.text_field :description %><br>
+
+  <%= form.label :pet_names %>
+  <%= form.text_field :pet_names %><br>
+
+  <%= form.hidden_field :status, value: "In Progress" %><br>
+
+  <%= form.submit 'Submit' %>
+<% end %>
