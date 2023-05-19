@@ -1,14 +1,14 @@
 require "rails_helper"
 
 RSpec.describe "Application new page", type: :feature do
-  describe "US2  I am taken to the new application page where I see a form When I fill in this form with attributes" do
+  describe "US2  I am taken to the new application page where I see a form When I fill in    this form with attributes" do
     before(:each) do
       @app1 = Application.create!(name: "Sarah", street_address: "1234 Dog Lane", city: "Denver", state:     "CO", zipcode: 83673, description: "I love pets!", pet_names: "Draco", status: "In Progress")
     end
+
     it "I am taken to the new application's show page I see my Name, address information, and description of why I would make a good home And I see an indicator that this application is 'In Progress" do
 
     visit "/applications/new"
-save_and_open_page
 
     fill_in 'Name', with: 'Sarah'
     fill_in 'Street address', with: "1234 Dog Lane"
@@ -30,17 +30,6 @@ save_and_open_page
     expect(page).to have_content('I love pets')
     expect(page).to have_content('Draco')
     expect(page).to have_content('In Progress')
+    end
   end
-end
-
-  # Name
-  # Street Address
-  # City
-  # State
-  # Zip Code
-  # Description of why I would make a good home
-  # And I click submit
-  # Then I am taken to thege new application's show pa
-  # And I see my Name, address information, and description of why I would make a good home
-  # And I see an indicator that this application is 'In Progress'"
 end

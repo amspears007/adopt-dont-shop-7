@@ -82,24 +82,6 @@ RSpec.describe "the pets index" do
     expect(page).to_not have_content(pet_3.name)
   end
 
-#   Starting an Application
-# As a visitor
-# When I visit the pet index page
-# Then I see a link to "Start an Application"
-# When I click this link
-# Then I am taken to the new application page where I see a form
-# When I fill in this form with my:
-
-# Name
-# Street Address
-# City
-# State
-# Zip Code
-# Description of why I would make a good home
-# And I click submit
-# Then I am taken to the new application's show page
-# And I see my Name, address information, and description of why I would make a good home
-# And I see an indicator that this application is "In Progress"
   describe "US2 has link for new pet application" do
     it "I see a link to 'Start an Application' When I click this link Then I am taken to the new application page where I see a form" do
       shelter = Shelter.create(name: "Aurora shelter", city: "Aurora, CO", foster_program: false, rank: 9)
@@ -107,8 +89,7 @@ RSpec.describe "the pets index" do
       pet_2 = Pet.create(adoptable: true, age: 3, breed: "doberman", name: "Lobster", shelter_id: shelter.id)
 
       visit "/pets"
-      save_and_open_page
-
+    
       expect(page).to have_link("Start New Pet Application")
       click_link("Start New Pet Application")
       expect(current_path).to eq("/applications/new")
