@@ -33,16 +33,27 @@ RSpec.describe "application show page", type: :feature do
 # Then I am taken back to the application show page
 # And under the search bar I see any Pet whose name matches my search
 
-  describe "When the application has not been submitted" do
+  describe "US4 It has a button to add a pet to the application" do
     it "I see a section on the page to 'Add a Pet to this application" do
       visit "/applications/#{@app1.id}"
 
       expect(page).to have_content("Add a Pet to this Application")
+      expect(page).to have_button("Search")
+      expect(page).to have_content("In Progress")
+
       fill_in "Search", with: "Elle"
       click_on("Search")
 
       expect(page).to have_content(@pet_3.name)
-      expect(page).to_not have_content(pet_1.name)
+      expect(page).to_not have_content(@pet_1.name)
+      expect(current_path).to eq("/applications/#{@app1.id}")
+
+      fill_in "Search", with: "Babe"
+      click_on("Search")
+
+      expect(page).to have_content(@pet_2.name)
+      expect(page).to_not have_content(@pet_1.name)
+
     end
   end
 end
