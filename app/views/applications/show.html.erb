@@ -5,7 +5,10 @@
   <p>City: <%= @application.city %>
   <p>State: <%= @application.state %>
   <p>Zipcode: <%= @application.zipcode %>
-  <p>Description: <%= @application.description %>
+  <p>Description: <%= @application.description %><br>
+  <% @application.pets.each do |pet|%>
+    <p>Pets: <%= link_to pet.name, "/pets/#{pet.id}" %></p>
+  <% end %>
   <p>Status: <%= @application.status %>
 
   <section id="add_pet-<%= @application.id %>">
@@ -18,7 +21,9 @@
 
   <% if @pets != nil %>
     <% @pets.each do |pet| %>
-    <%= pet.name %>
+    <%= pet.name %> 
+    <%= button_to "Adopt this Pet", "/applications/#{@application.id}?search=#{pet.name}", method: :patch  %>
     <% end %> 
   <% end %> 
   </section>
+  <br>
