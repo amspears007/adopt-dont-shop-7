@@ -13,6 +13,5 @@ RSpec.describe Application do
     it { should validate_presence_of (:city) }
     it { should validate_numericality_of (:zipcode) }
     it { should validate_presence_of (:description) }
-    it { should validate_presence_of (:pet_names) }
   end
 end
