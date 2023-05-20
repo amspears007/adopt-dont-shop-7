@@ -1,4 +1,5 @@
 <h1>Application Show Page</h1>
+
   <p>Name: <%= @application.name %></p>
   <p>Street Address: <%= @application.street_address %>
   <p>City: <%= @application.city %>
@@ -7,3 +8,18 @@
   <p>Description: <%= @application.description %>
   <p>Pet Names: <%= @application.pet_names %>
   <p>Status: <%= @application.status %>
+
+  <section>
+  <h3> Add a Pet to this Application </h3>
+  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
+  <%= f.label :search %>
+  <%= f.text_field :search %>
+  <%= f.submit "Search" %>
+<% end %>
+  </section>
+
+  <% if @pets != nil %>
+  <% @pets.each do |pet| %>
+    <%= pet.name %>
+  <% end %> 
+<% end %> 
