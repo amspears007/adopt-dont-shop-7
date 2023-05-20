@@ -21,11 +21,12 @@ class ApplicationsController < ApplicationController
   end
 
   def update
+    # require 'pry'; binding.pry
     application = Application.find(params[:id])
     added_pet = Pet.find_by(name: params[:search])
 
-    if added_pet.nil?
-      flash[:alert] = "Pet not found."
+    if params[:status] == "Pending"
+      application.update(status: params[:status], description: params[:description])
     else
       pet_app = PetApplication.create!(application_id: application.id, pet_id: added_pet.id)
     end
