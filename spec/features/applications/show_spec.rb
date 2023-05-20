@@ -25,17 +25,20 @@ RSpec.describe "application show page", type: :feature do
   describe "US4 It has a button to add a pet to the application" do
     it "I see a section on the page to 'Add a Pet to this application' In that section I see a search bar input where I can search for Pets by name When I fill in this field with a Pet's name and I click submit,Then I am taken back to the application show page and under the search bar I see any Pet whose name matches my search" do
       visit "/applications/#{@app1.id}"
-
-      expect(page).to have_content("Add a Pet to this Application")
-      expect(page).to have_button("Submit")
+save_and_open_page
       expect(page).to have_content("In Progress")
 
-      fill_in "Search", with: "Elle"
-      click_on("Submit")
+      within("#add_pet-#{@app1.id}") do
+        expect(page).to have_content("Add a Pet to this Application")
+        expect(page).to have_button("Submit")
+    
+        fill_in "Search", with: "Elle"
+        click_on("Submit")
 
-      expect(current_path).to eq("/applications/#{@app1.id}")
-      expect(page).to have_content(@pet_3.name)
-      expect(page).to_not have_content(@pet_1.name)
+        expect(current_path).to eq("/applications/#{@app1.id}")
+        expect(page).to have_content(@pet_3.name)
+        expect(page).to_not have_content(@pet_1.name)
+      end
 
       fill_in "Search", with: "Babe"
       click_on("Submit")
