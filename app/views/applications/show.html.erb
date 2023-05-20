@@ -14,9 +14,9 @@
   <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
   <%= f.label :search %>
   <%= f.text_field :search %>
-  <%= f.submit "Search" %>
+  <%= f.submit "Submit" %>
 <% end %>
-  </section>
+  </section><br>
 
   <% if @pets != nil %>
   <% @pets.each do |pet| %>
