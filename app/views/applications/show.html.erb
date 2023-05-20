@@ -6,20 +6,19 @@
   <p>State: <%= @application.state %>
   <p>Zipcode: <%= @application.zipcode %>
   <p>Description: <%= @application.description %>
-  <p>Pet Names: <%= @application.pet_names %>
   <p>Status: <%= @application.status %>
 
-  <section>
-  <h3> Add a Pet to this Application </h3>
-  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
-  <%= f.label :search %>
-  <%= f.text_field :search %>
-  <%= f.submit "Submit" %>
-<% end %>
-  </section><br>
+  <section id="add_pet-<%= @application.id %>">
+    <h3> Add a Pet to this Application </h3>
+    <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
+    <%= f.label :search %>
+    <%= f.text_field :search %>
+    <%= f.submit "Submit" %><br><br>
+  <% end %>
 
   <% if @pets != nil %>
-  <% @pets.each do |pet| %>
+    <% @pets.each do |pet| %>
     <%= pet.name %>
+    <% end %> 
   <% end %> 
-<% end %> 
+  </section>
