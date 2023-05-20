@@ -1,5 +1,5 @@
 # Adopt, don't Shop
-
+[Table Diagram](https://dbdiagram.io/d/645986badca9fb07c4b9e033)<br>
 This is a paired project used in Turing School's Backend Program Module 2.
 
 ## Learning Goals
