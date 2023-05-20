@@ -27,3 +27,15 @@
   <% end %> 
   </section>
   <br>
+
+  <section id="submit_application-<%= @application.id %>">
+  <h2> Submit My Application </h3>
+    <%=form_with url: "/applications/#{@application.id}", method: :get, local: true do |form| %><br>
+    <%= form.label "Why I would make a good owner for these pet(s)" %>
+    <%= form.text_field "Why I would make a good owner for these pet(s)"%>
+    <%= form.hidden_field :status, value: "Pending" %>
+    <%= form.submit "Apply" %>
+  <% end %>  
+  </section>
+
+
