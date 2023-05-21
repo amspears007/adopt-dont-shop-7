@@ -65,5 +65,43 @@ RSpec.describe "application show page", type: :feature do
       expect(page).to_not have_button("Adopt this Pet")
     end
   end
+
+#   6. Submit an Application
+
+# As a visitor
+# When I visit an application's show page
+# And I have added one or more pets to the application
+# Then I see a section to submit my application
+# And in that section I see an input to enter Why I would make a good owner for these pet(s)
+# When I fill in that input
+# And I click a button to submit this application
+# Then I am taken back to the application's show page
+# And I see an indicator that the application is "Pending"
+# And I see all the pets that I want to adopt
+# And I do not see a section to add more pets to this application
+
+  describe "US6 When I have added one or more pets to the application" do
+    it "I see a section to submit my application and input to enter my description. I fill in the form and click submit I am rerouted back to the show page and the status has changed to 'pending' and I see the pets I want adopt and dont' see the pet search bar to adopt more" do
+      visit "/applications/#{@app1.id}"
+      
+      fill_in "Search", with: "Babe"
+      click_on("Submit")
+      expect(page).to have_content("Babe")
+      click_button "Adopt this Pet"
+
+      
+      within("#submit_application-#{@app1.id}") do
+        expect(page).to have_content("Submit My Application")
+        fill_in :description, with: "I love animals"
+        click_button("Apply")
+        save_and_open_page
+        
+        expect(current_path).to eq("/applications/#{@app1.id}")
+        expect(page).to_not have_content("Add a Pet to this Application")
+        expect(page).to_not have_content("Search")
+      end
+      expect(page).to have_content("Pending")
+    end
+  end
 end
 
