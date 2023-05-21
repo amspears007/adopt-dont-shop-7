@@ -129,5 +129,19 @@ RSpec.describe "application show page", type: :feature do
       expect(page).to have_content("Elle")
       expect(page).to have_button("Adopt this Pet")
     end
+
+    it "allows me to seach for any pet whose regardless of case" do
+      visit "/applications/#{@app1.id}"
+
+      fill_in "Search", with: "elle"
+      click_on("Submit")
+      expect(page).to have_content("Elle")
+      expect(page).to have_button("Adopt this Pet")
+
+      fill_in "Search", with: "ba"
+      click_on("Submit")
+      expect(page).to have_content("Babe")
+      expect(page).to have_button("Adopt this Pet")
+    end
   end
 end
