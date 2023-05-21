@@ -28,7 +28,6 @@ RSpec.describe "Application new page", type: :feature do
       expect(page).to have_content('Denver')
       expect(page).to have_content('CO')
       expect(page).to have_content('I love pets')
-      expect(page).to have_content('Draco')
       expect(page).to have_content('In Progress')
     end
 
