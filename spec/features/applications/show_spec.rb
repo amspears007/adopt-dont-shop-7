@@ -92,15 +92,15 @@ RSpec.describe "application show page", type: :feature do
       
       within("#submit_application-#{@app1.id}") do
         expect(page).to have_content("Submit My Application")
-        fill_in "Why I would make a good owner for these pet(s)", with: "I love animals"
+        fill_in :description, with: "I love animals"
         click_button("Apply")
-        # save_and_open_page
+        save_and_open_page
         
         expect(current_path).to eq("/applications/#{@app1.id}")
-        expect(page).to have_content("Pending")
         expect(page).to_not have_content("Add a Pet to this Application")
         expect(page).to_not have_content("Search")
       end
+      expect(page).to have_content("Pending")
     end
   end
 end
