@@ -114,4 +114,20 @@ RSpec.describe "application show page", type: :feature do
       expect(page).to have_content("Pending")
     end
   end
+
+  describe "US8 I search for Pets by name" do
+    it "allows me to seach for any pet whose name partially matches my search" do
+      visit "/applications/#{@app1.id}"
+
+      fill_in "Search", with: "El"
+      click_on("Submit")
+      expect(page).to have_content("Elle")
+      expect(page).to have_button("Adopt this Pet")
+
+      fill_in "Search", with: "lle"
+      click_on("Submit")
+      expect(page).to have_content("Elle")
+      expect(page).to have_button("Adopt this Pet")
+    end
+  end
 end
