@@ -17,10 +17,10 @@ RSpec.describe "Admin Shelter Index", type: :feature do
   describe "Whateve" do
     it "As an admin lists all Shelters in the system listed in reverse alphabetical order by name" do
       visit "/admin/shelters"
-
-      expect(@shelter2).to appear_before(@shelter3)
-      expect(@shelter3).to appear_before(@shelter1)
-      expect(@shelter2).to appear_before(@shelter1)
+save_and_open_page
+      expect(@shelter2.name).to appear_before(@shelter3.name)
+      expect(@shelter3.name ).to appear_before(@shelter1.name)
+      expect(@shelter2.name).to appear_before(@shelter1.name)
     end
   end
 end
