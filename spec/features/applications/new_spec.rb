@@ -29,4 +29,21 @@ RSpec.describe "Application new page", type: :feature do
     expect(page).to have_content('In Progress')
     end
   end
+
+  it "US3 I see a message that I must fill in those fields" do
+    visit "/applications/new"
+
+    fill_in 'Name', with: ''
+    fill_in 'Street address', with: "1234 Dog Lane"
+    fill_in "City", with: "Denver"
+    fill_in 'State', with: 'CO'
+    fill_in 'Zipcode', with: 83673
+    fill_in 'Description', with: "I love pets!"
+    fill_in 'pet_names', with: 'Draco'
+
+    click_on "Submit"
+
+    expect(current_path).to eq("/applications/new")
+    expect(page).to have_content("Error: Please fill in all fields")
+  end
 end
