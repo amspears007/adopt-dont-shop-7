@@ -75,7 +75,6 @@ RSpec.describe "application show page", type: :feature do
       expect(page).to have_content("Babe")
       click_button "Adopt this Pet"
 
-      
       within("#submit_application-#{@app1.id}") do
         expect(page).to have_content("Submit My Application")
         fill_in :description, with: "I love animals"
@@ -85,6 +84,7 @@ RSpec.describe "application show page", type: :feature do
         expect(page).to_not have_content("Add a Pet to this Application")
         expect(page).to_not have_content("Search")
       end
+      
       expect(page).to have_content("Pending")
     end
   end
@@ -114,5 +114,34 @@ RSpec.describe "application show page", type: :feature do
       expect(page).to have_content("Pending")
     end
   end
-end
 
+  describe "US8 I search for Pets by name" do
+    it "allows me to seach for any pet whose name partially matches my search" do
+      visit "/applications/#{@app1.id}"
+
+      fill_in "Search", with: "El"
+      click_on("Submit")
+      expect(page).to have_content("Elle")
+      expect(page).to have_button("Adopt this Pet")
+
+      fill_in "Search", with: "lle"
+      click_on("Submit")
+      expect(page).to have_content("Elle")
+      expect(page).to have_button("Adopt this Pet")
+    end
+
+    it "allows me to seach for any pet whose regardless of case" do
+      visit "/applications/#{@app1.id}"
+
+      fill_in "Search", with: "elle"
+      click_on("Submit")
+      expect(page).to have_content("Elle")
+      expect(page).to have_button("Adopt this Pet")
+
+      fill_in "Search", with: "ba"
+      click_on("Submit")
+      expect(page).to have_content("Babe")
+      expect(page).to have_button("Adopt this Pet")
+    end
+  end
+end
