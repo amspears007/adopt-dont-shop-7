@@ -35,4 +35,8 @@ class Shelter < ApplicationRecord
   def self.sort_shelter_name_z_a
     find_by_sql("SELECT * FROM shelters ORDER BY name DESC;")
   end
+
+  def self.pending_applications
+    require 'pry'; binding.pry
+  end
 end
