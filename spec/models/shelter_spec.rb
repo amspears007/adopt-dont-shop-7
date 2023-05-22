@@ -67,5 +67,11 @@ RSpec.describe Shelter, type: :model do
         expect(@shelter_1.pet_count).to eq(3)
       end
     end
+
+    describe "#sort_shelter_name_z_a" do
+      it "sorts by reverse alpha" do
+        expect(Shelter.sort_shelter_name_z_a).to eq([@shelter_2, @shelter_3, @shelter_1])
+      end
+    end
   end
 end
