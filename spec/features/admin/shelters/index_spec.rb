@@ -13,7 +13,7 @@ RSpec.describe "US10 Admin Shelter Index", type: :feature do
     @pet_5 = @shelter2.pets.create(name: 'Lucille Bald', breed: 'sphynx', age: 8, adoptable: true)
     
     @app1 = Application.create!(name: "Sarah", street_address: "1234 Dog Lane", city: "Denver", state: "CO", zipcode: 83673, description: "I love pets!", status: "In Progress")
-    @app2 = Application.create!(name: "Amy", street_address: '4321 Animal House St', city: 'Denver', state: 'CO', zipcode: 80238, description:"No more animals, I'm too stressed from Turing!")
+    @app2 = Application.create!(name: "Amy", street_address: '4321 Animal House St', city: 'Denver', state: 'CO', zipcode: 80238, description:"No more animals, I'm too stressed from Turing!", status: "In Progress")
     @app3 = Application.create!(name: "Sarah", street_address: "1234 Dog Lane", city: "Denver", state: "CO", zipcode: 83673, description: "I love pets!", status: "Pending")
 
     @pet1_application = PetApplication.create!(application_id: @app1.id, pet_id: @pet_1.id)
@@ -31,21 +31,14 @@ RSpec.describe "US10 Admin Shelter Index", type: :feature do
     expect(@shelter2.name).to appear_before(@shelter1.name)
   end
 
-
-#   For this story, you should fully leverage ActiveRecord methods in your query.
-
-# 11. Shelters with Pending Applications
-
-# As a visitor
-# When I visit the admin shelter index ('/admin/shelters')
-# Then I see a section for "Shelters with Pending Applications"
-# And in this section I see the name of every shelter that has a pending application
-  describe "I see a section for 'Shelters with Pending Applications'" do
+  describe "US11 I see a section for 'Shelters with Pending Applications'" do
     it "displays a section of the name of every shelter that has a pending application" do
       visit "/admin/shelters"
 
-      expect(page).to have_content("Shelters with Pending Applications")
-      expect(page).to have_content(@shelter2.name)
+      within("#pending_applications") do
+        expect(page).to have_content("Shelters with Pending Applications")
+        expect(page).to have_content(@shelter2.name)
+      end
     end
   end
 end
