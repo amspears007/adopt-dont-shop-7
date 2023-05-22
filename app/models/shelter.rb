@@ -37,6 +37,6 @@ class Shelter < ApplicationRecord
   end
 
   def self.pending_applications
-    require 'pry'; binding.pry
+    Shelter.joins(pets: :applications).where(applications: { status: 'Pending' }).distinct
   end
 end
