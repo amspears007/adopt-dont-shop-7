@@ -21,6 +21,16 @@ RSpec.describe Shelter, type: :model do
     @pet_2 = @shelter_1.pets.create(name: "Clawdia", breed: "shorthair", age: 3, adoptable: true)
     @pet_3 = @shelter_3.pets.create(name: "Lucille Bald", breed: "sphynx", age: 8, adoptable: true)
     @pet_4 = @shelter_1.pets.create(name: "Ann", breed: "ragdoll", age: 5, adoptable: true)
+
+    @app1 = Application.create!(name: "Sarah", street_address: "1234 Dog Lane", city: "Denver", state: "CO", zipcode: 83673, description: "I love pets!", status: "In Progress")
+    @app2 = Application.create!(name: "Amy", street_address: '4321 Animal House St', city: 'Denver', state: 'CO', zipcode: 80238, description:"No more animals, I'm too stressed from Turing!")
+    @app3 = Application.create!(name: "Sarah", street_address: "1234 Dog Lane", city: "Denver", state: "CO", zipcode: 83673, description: "I love pets!", status: "Pending")
+
+    @pet1_application = PetApplication.create!(application_id: @app1.id, pet_id: @pet_1.id)
+    @pet2_application = PetApplication.create!(application_id: @app1.id, pet_id: @pet_2.id)
+    @pet3_application = PetApplication.create!(application_id: @app1.id, pet_id: @pet_4.id)
+    @pet4_application = PetApplication.create!(application_id: @app2.id, pet_id: @pet_2.id)
+    @pet5_application = PetApplication.create!(application_id: @app3.id, pet_id: @pet_2.id)
   end
 
   describe "class methods" do
@@ -71,6 +81,12 @@ RSpec.describe Shelter, type: :model do
     describe "#sort_shelter_name_z_a" do
       it "sorts by reverse alpha" do
         expect(Shelter.sort_shelter_name_z_a).to eq([@shelter_2, @shelter_3, @shelter_1])
+      end
+    end
+
+    describe "#pending_applications" do
+      it "show the name of every shelter that has a pending application" do
+        expect(Shelter.pending_applications).to eq([@shelter_2])
       end
     end
   end
