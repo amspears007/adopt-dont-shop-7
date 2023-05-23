@@ -1,12 +1,16 @@
 <h1> Admin Applications Show Page </h1>
 
-
-
+<h4> Applicant Name: <%= @application.name %></h4>
 <p><% @pet_applications.each do |pet_app| %></p>
-<%= "#{pet_app.pet.name} Approved" %>
+  <% if @pet_applications = [] && pet_app.status == "Pending" %>
+<p><%= "Pending Pet: #{pet_app.pet.name}" %></p><br>
+  <% end %>
    <% if @pet_applications != [] && pet_app.status == "Pending" %>
 <%= button_to "Approve Application for #{pet_app.pet.name}", "/admin/applications/#{@application.id}", params: {status: :Approved, pet_id: pet_app.pet.id},  method: :patch, local: true %>
-<% end %>
+  <% end %>
+   <% if @pet_applications != [] && pet_app.status == "Approved" %>
+<%= "Pet: #{pet_app.pet.name} Approved" %><br><br>
+  <% end %>
 <% end %>
 
 

@@ -38,7 +38,7 @@ end
       expect(page).to have_button("Approve Application for #{@pet_1.name}")
       click_button("Approve Application for #{@pet_1.name}")
       save_and_open_page
-      # require 'pry'; binding.pry
+      
       expect(current_path).to eq("/admin/applications/#{@app3.id}")
 
       expect(page).to have_content("#{@pet_1.name} Approved")
