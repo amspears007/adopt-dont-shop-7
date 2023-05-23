@@ -9,8 +9,9 @@ class Admin::ApplicationsController < ApplicationController
     approved_pet= Pet.find(params[:pet_id])
     if params[:status] == "Approved"
       approved_application.update(status: params[:status])
-    else
-      pet_app = PetApplication.create!(application_id: approved_application.id, pet_id: approved_pet.id)
+    else 
+      params[:status] == "Rejected"
+      approved_application.update(status: params[:status])
     end
       redirect_to "/admin/applications/#{params[:id]}"
   end
