@@ -19,14 +19,19 @@ VeterinaryOffice.destroy_all
 @pet_2 = @shelter2.pets.create(name: 'Max', breed: 'huge weiner dog', age: 9, adoptable: true)
 @pet_3 = @shelter1.pets.create(name: 'Mr. Pirate', breed: 'tuxedo shorthair', age: 5, adoptable: true)
 @pet_4 = @shelter1.pets.create(name: 'Clawdia', breed: 'shorthair', age: 3, adoptable: true)
-@pet_5 = @shelter2.pets.create(name: 'Lucille Bald', breed: 'sphynx', age: 8, adoptable: true)
+@pet_5 = @shelter2.pets.create(name: 'Okie', breed: 'black lab', age: 2, adoptable: true)
 
 
 @app1 = Application.create!(name: "Sarah", street_address: "1234 Dog Lane", city: "Denver", state: "CO", zipcode: 83673, description: "I love pets!", status: "In Progress")
-@app2 = Application.create!(name: "Amy", street_address: '4321 Animal House St', city: 'Denver', state: 'CO', zipcode: 80238, description:"No more animals, I'm too stressed from Turing!")
-@app3 = Application.create!(name: "Sarah", street_address: "1234 Dog Lane", city: "Denver", state: "CO", zipcode: 83673, description: "I love pets!", status: "Pending")
+@app2 = Application.create!(name: "Amy", street_address: '4321 Animal House St', city: 'Denver', state: 'CO', zipcode: 80238, description:"No more animals, I'm too stressed from Turing!", status: "In Progress")
+@app3 = Application.create!(name: "Janet", street_address: "1111 Woofers Dr", city: "Denver", state: "CO", zipcode: 83673, description: "Okie Bokie is my favorite!", status: "In Progress")
 
 @pet1_application = PetApplication.create!(application_id: @app1.id, pet_id: @pet_1.id)
 @pet2_application = PetApplication.create!(application_id: @app1.id, pet_id: @pet_2.id)
 @pet3_application = PetApplication.create!(application_id: @app1.id, pet_id: @pet_4.id)
 @pet4_application = PetApplication.create!(application_id: @app2.id, pet_id: @pet_2.id)
+@pet5_application = PetApplication.create!(application_id: @app2.id, pet_id: @pet_3.id)
+@pet6_application = PetApplication.create!(application_id: @app3.id, pet_id: @pet_5.id)
+@pet7_application = PetApplication.create!(application_id: @app3.id, pet_id: @pet_1.id)
+
+
