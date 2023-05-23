@@ -38,4 +38,18 @@ RSpec.describe "Admin Application show page", type: :feature do
       end
     end
   end
+
+  describe "US13 When I visit the Admin Application Show Page, I see a button to reject the application for that specific pet" do
+    describe "When I click that button, then I am taken back to the Admin Application Show Page" do
+      it "will not display the approve button next to the pet but will display an indicator next to the pet that they have been approved" do
+
+        expect(page).to have_button("Reject Application for #{@pet_1.name}")
+        click_button("Reject Application for #{@pet_1.name}")
+        expect(current_path).to eq("/admin/applications/#{@app_3.id}")
+        
+        expect(page).to have_content("#{@pet_1.name} Rejected")
+        expect(page).to_not have_button("Reject Application for #{@pet_1.name}")
+      end
+    end
+  end
 end
