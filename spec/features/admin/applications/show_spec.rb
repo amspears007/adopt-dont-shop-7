@@ -54,13 +54,6 @@ RSpec.describe "Admin Application show page", type: :feature do
       end
     end
 
-#     As a visitor
-# When there are two applications in the system for the same pet
-# When I visit the admin application show page for one of the applications
-# And I approve or reject the pet for that application
-# When I visit the other application's admin show page
-# Then I do not see that the pet has been accepted or rejected for that application
-# And instead I see buttons to approve or reject the pet for this specific application
     describe "US14 Two applications in the system for the same pet" do
       it "I approve or reject the pet for that application then I visit the other application's admin show page. I do not see that the pet has been accepted or rejected for that application instead I see buttons to approve or reject the pet for this specific application" do
         visit "/admin/applications/#{@app_3.id}"
