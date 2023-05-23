@@ -35,13 +35,14 @@ end
   describe " US12 '/admin/applications/:id'  I see a button to approve the application for that specific pet" do
     it "I click that button Then I'm taken back to the admin application show page And next to the pet that I approved, I do not see a button to approve this pet And instead I see an indicator next to the pet that they have been approved" do
       visit "/admin/applications/#{@app3.id}"
-
-      expect(page).to have_button("Approve Application for #{@pet_1.id}")
-      click_button("Approve Application for #{@pet_1.id}")
+      expect(page).to have_button("Approve Application for #{@pet_1.name}")
+      click_button("Approve Application for #{@pet_1.name}")
+      save_and_open_page
+      # require 'pry'; binding.pry
       expect(current_path).to eq("/admin/applications/#{@app3.id}")
 
       expect(page).to have_content("#{@pet_1.name} Approved")
-      expect(page).to_not have_button("Approve Application for #{@pet_1.id}")
+      expect(page).to_not have_button("Approve Application for #{@pet_1.name}")
     end
   end
 end
