@@ -15,9 +15,7 @@ RSpec.describe "Application new page", type: :feature do
       fill_in "City", with: "Denver"
       fill_in 'State', with: 'CO'
       fill_in 'Zipcode', with: 83673
-      fill_in 'Description', with: "I love pets!"
-    
-      fill_in 'pet_names', with: 'Draco'
+      fill_in "Why would you make a good home for this pet(s)?", with: "I love pets!"
 
       click_on "Submit"
 
@@ -39,8 +37,7 @@ RSpec.describe "Application new page", type: :feature do
       fill_in "City", with: "Denver"
       fill_in 'State', with: 'CO'
       fill_in 'Zipcode', with: 83673
-      fill_in 'Description', with: "I love pets!"
-      fill_in 'pet_names', with: 'Draco'
+      fill_in "Why would you make a good home for this pet(s)?", with: "I love pets!"
 
       click_on "Submit"
 
@@ -57,8 +54,7 @@ RSpec.describe "Application new page", type: :feature do
     fill_in "City", with: "Denver"
     fill_in 'State', with: 'CO'
     fill_in 'Zipcode', with: 83673
-    fill_in 'Description', with: "I love pets!"
-    fill_in 'pet_names', with: 'Draco'
+    fill_in "Why would you make a good home for this pet(s)?", with: "I love pets!"
 
     click_on "Submit"
 
