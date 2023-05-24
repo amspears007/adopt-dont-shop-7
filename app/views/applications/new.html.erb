@@ -15,7 +15,7 @@
   <%= form.text_field :state %><br>
   <br>
   <%= form.label :zipcode %>
-  <%= form.number_field :zipcode, step: 1.0%><br>
+  <%= form.number_field :zipcode, input_html: { maxlength: 5} %><br>
   <br>
   <%= form.label :description, "Why would you make a good home for this pet(s)?" %><br><br>
   <%= form.text_area :description, rows: 7, cols: 60 %><br>
