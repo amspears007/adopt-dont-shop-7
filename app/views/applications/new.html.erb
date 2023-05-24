@@ -1,23 +1,25 @@
+<h1>New Application</h1>
+<h5>Please fill in all sections<h5>
+
 <%= form_with method: :post, local: true do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %><br>
-<br>
+  <br>
   <%= form.label :street_address %>
   <%= form.text_field :street_address %><br>
-<br>
+  <br>
   <%= form.label :city%>
   <%= form.text_field :city %><br>
-<br>
+  <br>
   <%= form.label :state %>
   <%= form.text_field :state %><br>
-<br>
+  <br>
   <%= form.label :zipcode %>
   <%= form.number_field :zipcode, step: 1.0%><br>
-<br>
-  <%= form.label :description, "Why would you make a good home for this pet(s)?" %>
-  <%= form.text_field :description %><br>
+  <br>
+  <%= form.label :description, "Why would you make a good home for this pet(s)?" %><br><br>
+  <%= form.text_area :description, rows: 7, cols: 60 %><br>
 
   <%= form.hidden_field :status, value: "In Progress" %><br>
-
   <%= form.submit 'Submit' %>
 <% end %>
