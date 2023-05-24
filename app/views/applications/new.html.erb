@@ -1,7 +1,7 @@
 <h1>New Application</h1>
 <h5>Please fill in all sections<h5>
 
-<%= form_with method: :post, local: true do |form| %>
+<%= form_with method: :post, data: {turbo: false}, local: true do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %><br>
   <br>
