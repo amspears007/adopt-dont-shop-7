@@ -5,6 +5,6 @@ class Application < ApplicationRecord
   validates :street_address, presence: true
   validates :state, presence: true
   validates :city, presence: true
-  validates :zipcode, presence: true, numericality: true
+  validates :zipcode, presence: true, numericality: true, length: { is: 5}
   validates :description, presence: true
 end
