@@ -24,21 +24,19 @@ RSpec.describe "US10 Admin Shelter Index", type: :feature do
     @pet_application_6 = PetApplication.create!(application_id: @app_3.id, pet_id: @pet_1.id)
 
     visit "/admin/shelters"
-    
+
   end
 
-  describe "US10 Admin Shelter Index Page" do
-    it "will display all shelters in reverse alphabetical order" do
+  it "will display all shelters in reverse alphabetical order" do
 
-      expect(@shelter_2.name).to appear_before(@shelter_3.name)
-      expect(@shelter_3.name).to appear_before(@shelter_1.name)
-      expect(@shelter_2.name).to appear_before(@shelter_1.name)
+    expect(@shelter_2.name).to appear_before(@shelter_3.name)
+    expect(@shelter_3.name).to appear_before(@shelter_1.name)
+    expect(@shelter_2.name).to appear_before(@shelter_1.name)
 
-      expect(@shelter_1.name).to_not appear_before(@shelter_2.name)
-      expect(@shelter_1.name).to_not appear_before(@shelter_3.name)
-      expect(@shelter_3.name).to_not appear_before(@shelter_2.name)
+    expect(@shelter_1.name).to_not appear_before(@shelter_2.name)
+    expect(@shelter_1.name).to_not appear_before(@shelter_3.name)
+    expect(@shelter_3.name).to_not appear_before(@shelter_2.name)
 
-    end
   end
 
   describe "US11 I see a section for 'Shelters with Pending Applications'" do
