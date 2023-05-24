@@ -7,21 +7,20 @@ class ApplicationsController < ApplicationController
   end
 
   def new
-   
   end
 
   def create
     application = Application.new(application_params)
+
     if application.save
     redirect_to "/applications/#{application.id}"
     else
       redirect_to "/applications/new"
-      flash[:alert] = "Error: Please fill in all fields"
+      flash[:alert] = "Error: Please Make Sure All Fields Are Filled In Correctly"
     end
   end
 
   def update
-    # require 'pry'; binding.pry
     application = Application.find(params[:id])
     added_pet = Pet.find_by(name: params[:search])
 
@@ -31,11 +30,10 @@ class ApplicationsController < ApplicationController
       pet_app = PetApplication.create!(application_id: application.id, pet_id: added_pet.id)
     end
       redirect_to "/applications/#{application.id}"
-    # PetApplication.create!(application_id: application.id, pet_id: @added_pet.id)
-    # redirect_to "/applications/#{application.id}"
   end
 
   private
+  
   def application_params
     params.permit(:name, :street_address, :city, :state, :zipcode, :description, :status)
   end
