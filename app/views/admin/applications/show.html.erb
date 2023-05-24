@@ -1,22 +1,22 @@
 <h1> Admin Applications Show Page </h1>
 
-<h4> Applicant Name: <%= @application.name %></h4>
+<h3> Applicant Name: <%= @application.name %></h3>
 <p><% @pet_applications.each do |pet_app| %></p>
 
   <% if @pet_applications != [] && pet_app.status == "Pending" %>
-    <p><%= "Pending Pet: #{pet_app.pet.name}" %></p><br>
+    <p><strong><%= "Pending Pet: #{pet_app.pet.name}" %></strong></p><br>
     <%= button_to "Approve Application for #{pet_app.pet.name}", "/admin/applications/#{@application.id}", params: {status: :Approved, pet_id: pet_app.pet.id},  method: :patch, local: true %>
     <%= button_to "Reject Application for #{pet_app.pet.name}", "/admin/applications/#{@application.id}", params: {status: :Rejected, pet_id: pet_app.pet.id},  method: :patch, local: true %>
   <% end %>
 
   <% if @pet_applications != [] && pet_app.status == "Approved" %>
-    <%= "Pet: #{pet_app.pet.name} Approved" %><br><br>
+    <p style="color: green;">Pet: <%= pet_app.pet.name %> Approved</p>
   <% end %>
 
   <% if @pet_applications != [] && pet_app.status == "Rejected" %>
-    <%= "Pet: #{pet_app.pet.name} Rejected" %><br><br>
+    <p style="color: red;">Pet: <%= pet_app.pet.name %> Rejected</p>
   <% end %>
-
+  
 <% end %>
 
 
